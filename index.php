@@ -9,9 +9,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="initial-scale=1, maximum-scale=1">
         <!-- site metas -->
-        <title>Den</title>
-        <meta name="keywords" content="">
-        <meta name="description" content="">
+        <title>ENES GLOBAL TRADING LIMITED</title>
+        <meta name="keywords" content="ENES Global Sweets Online Delivery, ENES Global Online shopping, ENES Global Sweets, ENES Global Namkeen, ENES Global Snacks, ENES Global Papad, ENES Global Biscuits, Buy ENES Global Orange Burfee">
+        <meta name="description" content="ENES Globle’s healthy, tasty, and differentiated products while being recognized as a sustainable, friendly, and fastest growing FMCG.">
         <meta name="author" content="">	
         <!-- bootstrap css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
