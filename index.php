@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<?php session_start();?>
 <html lang="en">
     <head>
         <!-- basic -->
@@ -29,8 +30,39 @@
         <link rel="stylesheet" href="css/owl.carousel.min.css">
         <link rel="stylesheet" href="css/owl.theme.default.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-
+        <style>
+            .nice-select {
+                background-color: #f6f6f6;
+                border-radius: 0;
+                box-sizing: border-box;
+                clear: both;
+                display: block;
+                float: left;
+                height: auto;
+                outline: none;
+                padding-left: 20px;
+                padding-right: 35px;
+                position: relative;
+                -webkit-transition: all 0.2s ease-in-out;
+                transition: all 0.2s ease-in-out;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                width: 100%;
+                cursor: pointer;
+                font-family: inherit;
+                font-weight: normal;
+                line-height: 15px;
+                text-align: left !important;
+                white-space: nowrap;
+                font-weight: 300;
+                margin-bottom: 15px;
+                
+            }
+        </style>
     </head>
+
     <body>
         <header>
             <div class="layout_padding banner_section_start">
@@ -147,23 +179,21 @@
 
                         <?php
                         $productarray = [
-                            array("title"=>"Moorukulu", "image"=>"1"),
-                            array("title"=>"Bhujiya Sev", "image"=>"2"),
-                            array("title"=>"Moong Dal", "image"=>"3"),
-                            array("title"=>"Tasty Nuts", "image"=>"4"),
-                            array("title"=>"Aloo Lachcha", "image"=>"5"),
-                            array("title"=>"Ratlami Sev", "image"=>"6"),
-                            array("title"=>"Jeera Namkeen Cookies", "image"=>"7"),
-                            array("title"=>"Kaju Katali", "image"=>"8"),
-                            array("title"=>"Masala Sticks", "image"=>"9"),
-                            
-                            
+                            array("title" => "Moorukulu", "image" => "1"),
+                            array("title" => "Bhujiya Sev", "image" => "2"),
+                            array("title" => "Moong Dal", "image" => "3"),
+                            array("title" => "Tasty Nuts", "image" => "4"),
+                            array("title" => "Aloo Lachcha", "image" => "5"),
+                            array("title" => "Ratlami Sev", "image" => "6"),
+                            array("title" => "Jeera Namkeen Cookies", "image" => "7"),
+                            array("title" => "Kaju Katali", "image" => "8"),
+                            array("title" => "Masala Sticks", "image" => "9"),
                         ];
                         foreach ($productarray as $key => $value) {
                             ?>
                             <div class="col-sm-4">
-                                <div class="images"><img src="images/products/<?php echo $value["image"].".jpg"?>" style="max-width: 100%; width: 100%;"></div>
-                                <h2 class="den_text croissants"><a href="#"><?php echo $value["title"];?></a></h2>
+                                <div class="images"><img src="images/products/<?php echo $value["image"] . ".jpg" ?>" style="max-width: 100%; width: 100%;"></div>
+                                <h2 class="den_text croissants"><a href="#"><?php echo $value["title"]; ?></a></h2>
                             </div>
                             <?php
                         }
@@ -235,27 +265,57 @@
                 <div class="touch_main">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="input_main">
-                                <div class="container">
-                                    <form action="/action_page.php">
+                            <form action="./actionpage.php" method="post">
+                                <div class="input_main">
+                                    <div class="container">
+
                                         <div class="form-group">
-                                            <input type="text" class="email-bt" placeholder="YOUR NAME" name="Name">
+                                            <input type="text" class="email-bt" placeholder="YOUR NAME" name="name" required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="email-bt" placeholder="EMAIL" name="Email">
+                                            <input type="text" class="email-bt" placeholder="EMAIL" name="email"  required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" class="email-bt" placeholder="PHONE NUMBER" name="Email">
+                                            <input type="text" class="email-bt" placeholder="Contact No." name="contact_no"  required=""/>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="massage-bt" placeholder="MASSAGE" rows="5" id="comment" name="text"></textarea>
+                                            <select class="email-bt"  name="product"  required="" style="display: none;">
+                                                <?php
+                                                $productarray = [
+                                                    array("title" => "Moorukulu", "image" => "1"),
+                                                    array("title" => "Bhujiya Sev", "image" => "2"),
+                                                    array("title" => "Moong Dal", "image" => "3"),
+                                                    array("title" => "Tasty Nuts", "image" => "4"),
+                                                    array("title" => "Aloo Lachcha", "image" => "5"),
+                                                    array("title" => "Ratlami Sev", "image" => "6"),
+                                                    array("title" => "Jeera Namkeen Cookies", "image" => "7"),
+                                                    array("title" => "Kaju Katali", "image" => "8"),
+                                                    array("title" => "Masala Sticks", "image" => "9"),
+                                                ];
+                                                foreach ($productarray as $key => $value) {
+                                                    ?>
+                                                    <option value="<?php echo $value["title"]; ?>"><?php echo $value["title"]; ?></option>
+
+                                                    <?php
+                                                }
+                                                ?>
+                                            </select>
                                         </div>
-                                    </form> 
-                                </div> 
-                            </div>
-                            <div class="send_btn">
-                                <button type="button" class="main_bt"><a href="#">SEND</a></button>                  
-                            </div>
+                                        <div class="form-group">
+                                            <textarea class="massage-bt" placeholder="MASSAGE" rows="5" id="comment" name="message"  required=""></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <img src="formgenerater.php?input=captcha" id='captchaimg' style="width: 30%;    height: fit-content;" /> 
+                                            <input name="captcha" id="captcha" type="text" placeholder="Type the text" class="con_pass r_corners bg_light border_none"  required="" style="    width: 135px;
+                                                   height: 44px;
+                                                   font-size: 20px;" required="">
+                                        </div>
+                                    </div> 
+                                </div>
+                                <div class="send_btn">
+                                    <button type="submit" class="main_bt" name="submit" value="sendmail">SEND</button>                  
+                                </div>
+                            </form> 
                         </div>
                         <div class="col-md-6">
                             <div class="images">
@@ -270,7 +330,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.093378044647!2d114.16817461420835!3d22.312307985317336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340400c0fca5a983%3A0x2d033f26088165ae!2sYen%20Chun%20Mansion%2C%2018-26%20Portland%20St%2C%20Yau%20Ma%20Tei%2C%20Hong%20Kong!5e0!3m2!1sen!2sin!4v1673973018589!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.093378044647!2d114.16817461420835!3d22.312307985317336!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x340400c0fca5a983%3A0x2d033f26088165ae!2sYen%20Chun%20Mansion%2C%2018-26%20Portland%20St%2C%20Yau%20Ma%20Tei%2C%20Hong%20Kong!5e0!3m2!1sen!2sin!4v1673973018589!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
             </div>
@@ -340,7 +400,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <p class="copyright_taital"><?php echo date("Y");?> All Rights Reserved. <a href="https://octopuscart.in">From The House Of ENES GLOBAL TRADING LIMITED</p>
+                        <p class="copyright_taital"><?php echo date("Y"); ?> All Rights Reserved. <a href="https://octopuscart.in">From The House Of ENES GLOBAL TRADING LIMITED</p>
                     </div>
                 </div>
             </div>
@@ -361,8 +421,16 @@
         <!-- javascript --> 
         <script src="js/owl.carousel.js"></script>
         <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+        <script language='JavaScript' type='text/javascript'>
+            function refreshCaptcha()
+            {
+                $("#captchaimg").attr("src", "formgenerater.php?input=captcha");
+            }
+        </script>
         <script>
+
             $(document).ready(function () {
+
                 $(".fancybox").fancybox({
                     openEffect: "none",
                     closeEffect: "none"
@@ -378,7 +446,7 @@
             });
         </script> 
 
-       
+
 
 
 
